@@ -18,13 +18,10 @@ def home():
 
 @app.route("/scrape")
 def scrape():
-    # db.collection.remove({})
-    # mars_data = scrape_mars.scrape()
-    # db.collection.insert_one(mars_data)
-    # return  render_template('scrape.html')
-    mars = mongo.db.mars
-    mars_data = scrape_mars.scrape()
-    mars.update({}, mars_data, upsert=True)
+    db.collection.remove({})
+    mars_data = scrape.scrape()
+    db.collection.insert_one(mars_data)
+    return  render_template('scrape.html')
 
 if __name__ == "__main__":
     app.run(debug=True)
